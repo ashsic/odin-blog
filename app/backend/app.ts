@@ -1,16 +1,43 @@
 import express from 'express';
-import { connectDb } from './models/index';
+import { connectDb, models } from './models/index';
+
+import { Request, Response, NextFunction } from 'express';
+
+interface CustomRequest extends Request {
+  context: {
+    [key: string]: any; 
+  };
+};
 
 const app = express();
 
 const port = process.env.PORT || 3000;
+
+// Middleware
+
+// app.use((req: CustomRequest, res: Response, next: NextFunction) => {
+//   req.context = {
+//     models,
+//   };
+//   next();
+// });
+
+const customMiddleware = (req: CustomRequest, res: Response, next: NextFunction) => {
+  req.context = {
+    models,
+  }; 
+  next();
+};
+
+app.use(customMiddleware as express.RequestHandler);
+
 
 
 // Routes
 
 app.get('/', (req, res) => {
   res.send('Hello world!')
-})
+});
 
 
 
