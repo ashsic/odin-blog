@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.models = exports.db = void 0;
+var mongoose_1 = require("mongoose");
+var dotenv_1 = require("dotenv");
+var User_1 = require("./User.cjs");
+var Post_1 = require("./Post.cjs");
+dotenv_1.config();
+var mongoDB = process.env.DB_URL || '';
+console.log(mongoDB);
+mongoose_1.default.connect(mongoDB);
+var db = mongoose_1.default.connection;
+exports.db = db;
+var models = { User: User_1.default, Post: Post_1.default };
+exports.models = models;
