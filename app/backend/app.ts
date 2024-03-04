@@ -3,11 +3,7 @@ import { connectDb, models } from './models/index';
 
 import { Request, Response, NextFunction } from 'express';
 
-interface CustomRequest extends Request {
-  context: {
-    [key: string]: any; 
-  };
-};
+import router from './routes/User';
 
 const app = express();
 
@@ -15,12 +11,18 @@ const port = process.env.PORT || 3000;
 
 // Middleware
 
-// app.use((req: CustomRequest, res: Response, next: NextFunction) => {
+// app.use((req, res, next) => {
 //   req.context = {
 //     models,
 //   };
 //   next();
 // });
+
+interface CustomRequest extends Request {
+  context: {
+    [key: string]: any; 
+  };
+};
 
 const customMiddleware = (req: CustomRequest, res: Response, next: NextFunction) => {
   req.context = {
@@ -35,9 +37,7 @@ app.use(customMiddleware as express.RequestHandler);
 
 // Routes
 
-app.get('/', (req, res) => {
-  res.send('Hello world!')
-});
+app.use('/users', router);
 
 
 

@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 
-const postSchema = new mongoose.Schema(
+const commentSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    title: { type: String, required: true },
+    post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' },
     body: { type: String, required: true },
   },
   { timestamps: true }
 );
 
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model('Comment', commentSchema);
 
 export default Post;
