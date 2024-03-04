@@ -1,9 +1,8 @@
 import express from 'express';
 import { connectDb, models } from './models/index';
 
-import { Request, Response, NextFunction } from 'express';
-
-import router from './routes/User';
+import routes from './routes/index';
+import CustomRequest from './interfaces/CustomRequest';
 
 const app = express();
 
@@ -11,33 +10,18 @@ const port = process.env.PORT || 3000;
 
 // Middleware
 
-// app.use((req, res, next) => {
-//   req.context = {
-//     models,
-//   };
-//   next();
-// });
-
-interface CustomRequest extends Request {
-  context: {
-    [key: string]: any; 
-  };
-};
-
-const customMiddleware = (req: CustomRequest, res: Response, next: NextFunction) => {
+app.use((req: CustomRequest, res, next) => {
   req.context = {
     models,
-  }; 
+  };
   next();
-};
-
-app.use(customMiddleware as express.RequestHandler);
-
-
+});
 
 // Routes
 
-app.use('/users', router);
+app.use('/users', routes.user);
+app.use('/posts', routes.post);
+
 
 
 

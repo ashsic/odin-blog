@@ -1,9 +1,12 @@
 import { Router } from 'express';
+import CustomRequest from '../interfaces/CustomRequest';
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', (req: CustomRequest, res) => {
   res.send('test');
+  console.log('/users');
+  console.log(req.context);
   // res.send(Object.values(req.context.models.users));
 });
 
