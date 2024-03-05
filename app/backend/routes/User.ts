@@ -3,26 +3,23 @@ import CustomRequest from '../interfaces/CustomRequest';
 
 const router = Router();
 
-router.get('/', (req: CustomRequest, res) => {
-  res.send('test');
-  console.log('/users');
-  console.log(req.context);
-  // res.send(Object.values(req.context.models.users));
+router.get('/', async (req: CustomRequest, res) => {
+  const users = await req.context?.models?.User?.find({}) ?? 'Undefined';
+  return res.send(users);
 });
 
-router.post('/', (req, res) => {
-  console.log(req.body)
-  const message = {
+router.post('/', async (req: CustomRequest, res) => {
+  const User = await req.context?.models?.User;
+  const user = new User({
     username: req.body.username,
-    fullname: {
-      firstname: req.body.firstname,
-      lastname: req.body.lastname
-    },
+    fullname: req.body.fullname,
     password: req.body.password,
     adminStatus: req.body.adminStatus
-  }
+  });
 
-  return res.send(message);
+  await user.save()
+
+  return res.send(user);
 });
 
 export default router;

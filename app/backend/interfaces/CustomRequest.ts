@@ -1,7 +1,8 @@
 import { Request } from 'express';
+import { Model, Document } from 'mongoose';
 
 export default interface CustomRequest extends Request {
   context?: {
-    [key: string]: any; 
+    models?: any
   };
 };
