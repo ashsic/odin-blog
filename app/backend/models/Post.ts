@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema(
     title: { type: String, required: true },
     bodytext: { type: String, required: true },
     tags: {
-      type: [{ type: String }],
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }],
       validate: {
         validator: function(arr: Array<String>) {
           return arr.length > 0;
@@ -23,7 +23,8 @@ const postSchema = new mongoose.Schema(
         message: 'At least one tag must be associated with the post.'
       },
       required: true
-    }
+    },
+    public: { type: Boolean, required: true }
   },
   { timestamps: true }
 );

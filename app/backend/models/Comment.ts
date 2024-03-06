@@ -9,6 +9,6 @@ const commentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Post = mongoose.model('Comment', commentSchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
-export default Post;
+export default Comment;
