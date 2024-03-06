@@ -7,6 +7,8 @@ const tagSchema = new mongoose.Schema(
       of: String,
       required: true
     },
+    // Add array holding post IDs with this tag? 
+    // otherwise could be slow to search by tag
   },
   { timestamps: true }
 );
