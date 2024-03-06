@@ -11,9 +11,10 @@ router.get('/', async (req: CustomRequest, res) => {
 router.post('/', async (req: CustomRequest, res) => {
   const Post = await req.context?.models?.Post;
   const post = new Post({
-    user: req.body.user,
+    authors: req.body.authors,
     title: req.body.title,
     bodytext: req.body.bodytext,
+    tags: req.body.tags
   });
 
   await post.save()
