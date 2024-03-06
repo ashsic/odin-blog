@@ -3,6 +3,22 @@ import CustomRequest from '../interfaces/CustomRequest';
 
 const router = Router();
 
+// Routes - all have /posts by default
+
+// GET:
+// all posts - /posts
+// specific post (id) - /posts/:postid
+// specific post's comments - /posts/:postid/comments, then .map in react for each comment id?
+
+// POST
+// Create post - /posts
+
+// PUT
+// add/remove authors, tags, comments - /posts/:postid?
+
+// DELETE
+// delete post - /posts/:postid
+
 router.get('/', async (req: CustomRequest, res) => {
   const posts = await req.context?.models?.Post?.find({}) ?? 'Undefined';
   return res.send(posts);

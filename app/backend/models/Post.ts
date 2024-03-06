@@ -24,7 +24,7 @@ const postSchema = new mongoose.Schema(
       },
       required: true
     },
-    comments: {
+    comments: {  // Should include all attributes?
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
       default: [],
       required: true

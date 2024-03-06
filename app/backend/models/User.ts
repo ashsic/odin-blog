@@ -13,6 +13,12 @@ const userSchema = new mongoose.Schema(
     },
     password: { type: String, required: true },
     adminStatus: { type: Boolean, required: true },
+    posts: {
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
+      default: [],
+      required: true
+    }
+    // Comments?
   },
   { timestamps: true }
 );
