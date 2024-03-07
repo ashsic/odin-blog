@@ -1,17 +1,11 @@
 import { Router } from 'express';
-import { models } from '../models';
+import { getTag, getTags, createTag } from '../controllers/tagController';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
-  const tags = await models.Tag.find({}) ?? 'Undefined';
-  return res.send(tags);
-});
+router.get('/', getTags);
 
-router.get('/:tagid', async (req, res) => {
-  const tag = await models.Tag.find({ _id: req.params.tagid }) ?? 'Undefined';
-  return res.send(tag);
-});
+router.get('/:tagid', getTag);
 
 
 export default router;

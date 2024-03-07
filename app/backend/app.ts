@@ -1,8 +1,6 @@
 import express from 'express';
-import { connectDb, models } from './models/index';
-
+import { connectDb } from './models/index';
 import routes from './routes/index';
-
 
 const app = express();
 
@@ -18,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/users', routes.user);
 app.use('/posts', routes.post);
-
+app.use('/tags', routes.tag);
 
 connectDb().then(() => {
   console.log('Connected to MongoDB.');

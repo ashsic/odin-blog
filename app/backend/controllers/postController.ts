@@ -38,7 +38,6 @@ const deletePost = async (req: Request, res: Response) => {
   res.send('Post deleted')
 };
 
-
 export {
   createPost,
   getPosts,
