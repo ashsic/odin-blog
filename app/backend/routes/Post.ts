@@ -22,8 +22,6 @@ router.post('/', createPost);
 
 router.delete('/:postid', deletePost);
 
-
-
 export default router;
 
 
