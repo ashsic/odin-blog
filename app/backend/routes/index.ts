@@ -1,9 +1,9 @@
 import user from './User';
 import post from './Post';
-import comment from './Comment';
+import tag from './Tag';
 
 export default {
   user,
   post,
-  comment
+  tag
 };

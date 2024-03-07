@@ -2,7 +2,7 @@ import express from 'express';
 import { connectDb, models } from './models/index';
 
 import routes from './routes/index';
-import CustomRequest from './interfaces/CustomRequest';
+
 
 const app = express();
 
@@ -14,20 +14,10 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use((req: CustomRequest, res, next) => {
-  req.context = {
-    models,
-  };
-  next();
-});
-
 // Routes
 
 app.use('/users', routes.user);
 app.use('/posts', routes.post);
-
-
-
 
 
 connectDb().then(() => {
